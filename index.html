@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>MUSIC</title>
+</head>
+
+<style>
+    .container {
+        background-color: #484343;
+    }
+  .row {
+    font-style: oblique;
+  }
+.card-body {
+    background-color: #484343;
+}
+  .card-title {
+    font-style: oblique;
+    color: rgb(25, 25, 235);
+  }
+
+  .form-control {
+    font-style: italic;
+  }
+
+  
+  body {
+    background-color: #120c0c;
+    font-family: Arial, sans-serif;
+    padding-top: 20px;
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+.form-group {
+    color: rgb(243, 243, 236);
+}
+  .card-title {
+    color: #eaeaf1;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .form-control {
+    background-color: #484343;
+    font-style: italic;
+    border-radius: 4px;
+  }
+
+  .btn-primary {
+    background-color:#484343
+    border-color:#484343;
+    font-size: 16px;
+  }
+
+  .btn-primary:hover {
+    background-color: #0e0e6c;
+    border-color: #0e0e6c;
+  }
+
+  #dataOutput p {
+    margin-bottom: 10px;
+    color: #eaeaf1;
+    padding: 10px;
+    background-color:#484343
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+</style>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Music and Artist Information</h5>
+            <form id="infoForm">
+              <div class="form-group">
+                <label for="nameInput">Artist Name:</label>
+                <input type="text" class="form-control" id="nameInput" placeholder="Enter your name">
+              </div>
+
+              <div class="form-group">
+                <label for="titleInput">Music title:</label>
+                <input type="text" class="form-control" id="titleInput" placeholder="Enter your music title">
+              </div>
+
+              <div class="form-group">
+                <label for="dateInput">Release date:</label>
+                <input type="date" class="form-control" id="dateInput" placeholder="Enter release date">
+              </div>
+
+              <div class="form-group">
+                <label for="emailInput">Email:</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Data Entered</h5>
+            <div id="dataOutput"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    var enteredData = [];
+
+    document.getElementById("infoForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("nameInput").value;
+      var email = document.getElementById("emailInput").value;
+      var title = document.getElementById("titleInput").value;
+      var date = document.getElementById("dateInput").value;
+
+      var data = {
+        name: name,
+        email: email,
+        title: title,
+        date: date
+      };
+
+      enteredData.push(data);
+
+      document.getElementById("nameInput").value = "";
+      document.getElementById("emailInput").value = "";
+      document.getElementById("titleInput").value = "";
+      document.getElementById("dateInput").value = "";
+
+      updateDataDisplay();
+    });
+
+    function updateDataDisplay() {
+      var outputContainer = document.getElementById("dataOutput");
+      outputContainer.innerHTML = "";
+
+      enteredData.forEach(function(data) {
+        var dataElement = document.createElement("p");
+        dataElement.innerText = "Name: " + data.name + "\nEmail: " + data.email + "\nMusic Title: " + data.title + "\nRelease Date: " + data.date;
+        outputContainer.appendChild(dataElement);
+      });
+    }
+  </script>
+</body>
+
+</html>
